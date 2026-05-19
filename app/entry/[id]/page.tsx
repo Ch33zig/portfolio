@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { SECTIONS, findItem, getItemNumber } from "../../data";
+import { SECTIONS, findItem, getItemNumber, allItems } from "../../data";
 import EntryPage from "./EntryPage";
 
 export function generateStaticParams() {
@@ -31,6 +31,9 @@ export default async function Page({
 
   const n = getItemNumber(id);
   const section = SECTIONS.find((s) => s.items.some((it) => it.id === id));
+  const idx = allItems.findIndex((it) => it.id === id);
+  const prevId = idx > 0 ? allItems[idx - 1].id : undefined;
+  const nextId = idx < allItems.length - 1 ? allItems[idx + 1].id : undefined;
 
-  return <EntryPage item={item} n={n} sectionTitle={section?.title ?? ""} />;
+  return <EntryPage item={item} n={n} sectionTitle={section?.title ?? ""} prevId={prevId} nextId={nextId} />;
 }

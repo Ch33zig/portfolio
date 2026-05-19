@@ -161,10 +161,14 @@ export default function EntryPage({
   item,
   n,
   sectionTitle,
+  prevId,
+  nextId,
 }: {
   item: WorkItem;
   n: number;
   sectionTitle: string;
+  prevId?: string;
+  nextId?: string;
 }) {
   const [theme, setTheme] = useState<"paper" | "ink">("paper");
   const numStr = String(n).padStart(2, "0");
@@ -279,7 +283,7 @@ export default function EntryPage({
             <MetaBlock label="Role" value={item.role} offset={24} />
             <MetaBlock
               label="Website"
-              value={item.website ?? item.role}
+              value={item.websiteLabel ?? item.website ?? item.role}
               href={item.website ? `https://${item.website}` : undefined}
               offset={8}
             />
@@ -334,19 +338,35 @@ export default function EntryPage({
             initial="hidden"
             animate="show"
           >
-            {item.body.map((p, i) => (
-              <p
-                key={i}
-                style={{
-                  margin: "0 0 20px 0",
-                  fontSize: "clamp(15px, 1.3vw, 17px)",
-                  lineHeight: 1.65,
-                  fontWeight: 400,
-                }}
-              >
-                {p}
-              </p>
-            ))}
+            {item.body.map((p, i) => {
+              const isRich = typeof p === "object";
+              const text = isRich ? p.text : p;
+              const links = isRich ? p.links : {};
+              const parts = text.split(/(\[[^\]]+\])/g);
+              return (
+                <p
+                  key={i}
+                  style={{
+                    margin: "0 0 20px 0",
+                    fontSize: "clamp(15px, 1.3vw, 17px)",
+                    lineHeight: 1.65,
+                    fontWeight: 400,
+                  }}
+                >
+                  {parts.map((part, j) => {
+                    const match = part.match(/^\[([^\]]+)\]$/);
+                    if (match && links[match[1]]) {
+                      return (
+                        <Link key={j} href={links[match[1]]} style={{ color: "inherit" }}>
+                          ({match[1]})
+                        </Link>
+                      );
+                    }
+                    return part;
+                  })}
+                </p>
+              );
+            })}
           </motion.div>
         )}
 
@@ -393,7 +413,41 @@ export default function EntryPage({
               No.&nbsp;{numStr}
             </div>
           </div>
-          <BackButton />
+          <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+            {prevId && (
+              <Link
+                href={`/entry/${prevId}`}
+                className="smcp"
+                style={{
+                  background: "var(--fg)",
+                  color: "var(--bg)",
+                  padding: "6px 14px",
+                  fontSize: 10,
+                  textDecoration: "none",
+                  letterSpacing: "0.14em",
+                }}
+              >
+                ← Prev
+              </Link>
+            )}
+            {nextId && (
+              <Link
+                href={`/entry/${nextId}`}
+                className="smcp"
+                style={{
+                  background: "var(--fg)",
+                  color: "var(--bg)",
+                  padding: "6px 14px",
+                  fontSize: 10,
+                  textDecoration: "none",
+                  letterSpacing: "0.14em",
+                }}
+              >
+                Next →
+              </Link>
+            )}
+            <BackButton />
+          </div>
         </motion.div>
       </div>
 

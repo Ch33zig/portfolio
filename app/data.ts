@@ -5,8 +5,9 @@ export interface WorkItem {
   year: string;
   role: string;
   preview: string;
-  body?: string[];
+  body?: (string | { text: string; links: Record<string, string> })[];
   website?: string;
+  websiteLabel?: string;
 }
 
 export interface Section {
@@ -37,7 +38,7 @@ export const SECTIONS: Section[] = [
           "I realized later I was optimizing for the wrong thing. Fine-tuning felt like the serious, rigorous solution. But the real breakthrough was RAG, building a pipeline that hit the web in real-time and pulled live sources to verify claims against. The harder problem inside that was relevance: the web gives you a flood of results, and most of them aren't credible. I had to build filtering on top of retrieval to surface only high-credibility evidence; otherwise the agent would just confidently cite junk. That was the biggest problem I had to face: having to objectively score sources to make sure all sources cited are 100% accurate.",
           "When that clicked, accurate claims verified against real sources, bad claims flagged with actual evidence, it felt like a real product for the first time. It was also the first time I learned that in a startup, the most advanced solution isn't always the right one. The right one is whatever actually brings you closer to users using the product.",
           "Factful ended for me the way a lot of early startups end. Not because the product failed, but because the team did.",
-          "The person who came up with the original idea, \"Grammarly for fact-checking,\" wasn't doing much by the time we had a real product. But he wanted to be CEO, and his only reasoning was that the idea was his. Almost every other aspect of the company, the building, the operations, the conversations with the Ministry of Education, was being carried by someone else. When it became clear he wasn't willing to negotiate on structure or recognition, I left. A few others did too, and we went on to start something new together.",
+          { text: "The person who came up with the original idea, \"Grammarly for fact-checking,\" wasn't doing much by the time we had a real product. But he wanted to be CEO, and his only reasoning was that the idea was his. Almost every other aspect of the company, the building, the operations, the conversations with the Ministry of Education, was being carried by someone else. When it became clear he wasn't willing to negotiate on structure or recognition, I left. A few others did too, and we went on to start something new together. [Scripty]", links: { "Scripty": "/entry/scripty" } },
           "There was also a quieter disagreement underneath that: I thought we should be selling to education institutions. We were students, we had a direct line to that world, and we already had real signal, and the Ontario Ministry of Education had gotten on a call with us. That's not nothing. Institutions cared about fact-checking as a mandate in a way individual users just didn't. The pivot toward B2C felt like walking away from the only traction we had.",
           "Looking back, I probably should have held it more loosely. I wasn't there for the money; none of us were paid. It was always about the experience. And honestly, it was a great one. I learned more in those months than I could have sitting in a classroom. I'd still make the same call to leave, but I'd carry less weight about it on the way out.",
           "The biggest thing Factful changed in me was how I think about building. Before this, I built things for myself. To see if I could, to learn, to tinker. Factful was the first time I had to ask harder questions: who actually has this problem, what do they need, and what's the fastest path to something they'd genuinely use. That shift from builder to product thinker is something I've carried into everything since.",
@@ -46,17 +47,16 @@ export const SECTIONS: Section[] = [
         ],
       },
       {
-        id: "kettle",
-        title: "Kettle.fm",
-        subtitle: "A podcast app that respects the unfinished",
-        year: "2023",
-        role: "Design Lead",
+        id: "scripty",
+        title: "Scripty",
+        subtitle:
+          "AI Agents that connect to external scripts (tools) to interact with the real world",
+        year: "2024",
+        role: "Co-founder & CTO",
+        website: "web.archive.org/web/20250205010047/https://scripty.me/",
+        websiteLabel: "scripty.me",
         preview:
-          "An iOS client that treats episodes as objects you collect rather than queues you grind through. Led the redesign of discovery, playback, and the social layer.",
-        body: [
-          "Kettle is a podcast app for people who have 400 unplayed episodes and feel bad about it. The redesign reframed the library as a shelf you curate, not an inbox you clear.",
-          "Shipped a new playback surface with chapter scrubbing, a 'shelves' system for grouping episodes by mood, and a social layer that shows what people you trust are actually finishing — not just adding.",
-        ],
+          "AI Agents that connect to external scripts (tools) to interact with the real world",
       },
       {
         id: "northbank",
@@ -143,7 +143,8 @@ export const SECTIONS: Section[] = [
         subtitle: "A clock whose hands change weight",
         year: "2024",
         role: "Side project",
-        preview: "Heavier strokes when it's about to rain. It's a joke. It also works.",
+        preview:
+          "Heavier strokes when it's about to rain. It's a joke. It also works.",
       },
       {
         id: "loom",
