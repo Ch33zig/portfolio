@@ -4,7 +4,6 @@ export interface WorkItem {
   subtitle: string;
   year: string;
   role: string;
-  kind: string;
   preview: string;
   body?: string[];
   website?: string;
@@ -27,7 +26,6 @@ export const SECTIONS: Section[] = [
         subtitle: "Grammarly for Fact-Checking",
         year: "2023",
         role: "Full-Stack Developer",
-        kind: "Product",
         website: "factful.io",
         preview:
           "Somewhere in 2023, members of my team were on a Zoom call with the Ontario Ministry of Education, pitching Factful as an institutional writing tool. I wasn't on that call. I was 13, in China, and probably asleep.",
@@ -53,7 +51,6 @@ export const SECTIONS: Section[] = [
         subtitle: "A podcast app that respects the unfinished",
         year: "2023",
         role: "Design Lead",
-        kind: "Product",
         preview:
           "An iOS client that treats episodes as objects you collect rather than queues you grind through. Led the redesign of discovery, playback, and the social layer.",
         body: [
@@ -67,7 +64,6 @@ export const SECTIONS: Section[] = [
         subtitle: "Sixty-year-old bank, digital-first relaunch",
         year: "2022",
         role: "Contract, 4 months",
-        kind: "Brand + Product",
         preview:
           "Rebrand and product overhaul of a community bank. Identity, mobile app, marketing site, branch signage — all set in a custom serif drawn by a friend.",
         body: [
@@ -81,7 +77,6 @@ export const SECTIONS: Section[] = [
         subtitle: "Three years across health, transit, public sector",
         year: "2019–2022",
         role: "Senior Designer",
-        kind: "Consulting",
         preview:
           "Service design for clients including a regional transit authority, a children's hospital, and a state benefits agency. Wide problems, long timelines, tangible deliverables.",
         body: [
@@ -100,7 +95,6 @@ export const SECTIONS: Section[] = [
         subtitle: "Why most enterprise software is too spacious",
         year: "2024",
         role: "Essay",
-        kind: "Essay",
         preview:
           "The default in B2B design is to pad everything. The default in consumer design is to compress everything. Both are downstream of who's paying attention to the screen — and for how long.",
         body: [
@@ -113,7 +107,6 @@ export const SECTIONS: Section[] = [
         subtitle: "Every tool argues for a worldview",
         year: "2024",
         role: "Essay",
-        kind: "Essay",
         preview:
           "Figma argues that design is parallel. Linear argues that work is a sequence. Notion argues that everything is a page. The tool you reach for is a vote.",
         body: [
@@ -126,7 +119,6 @@ export const SECTIONS: Section[] = [
         subtitle: "Three years under fifteen people",
         year: "2023",
         role: "Essay",
-        kind: "Essay",
         preview:
           "The romance of the small team is mostly accurate. The part nobody talks about is how much of your day is spent being the only person who notices something.",
       },
@@ -142,7 +134,6 @@ export const SECTIONS: Section[] = [
         subtitle: "Interactive specimen for an in-progress serif",
         year: "2025",
         role: "Side project",
-        kind: "Web",
         preview:
           "A drawing tool and live specimen for a contemporary serif I'm cutting with a friend. The page responds to cursor proximity to demonstrate the optical sizes.",
       },
@@ -152,7 +143,6 @@ export const SECTIONS: Section[] = [
         subtitle: "A clock whose hands change weight",
         year: "2024",
         role: "Side project",
-        kind: "Object",
         preview: "Heavier strokes when it's about to rain. It's a joke. It also works.",
       },
       {
@@ -161,7 +151,6 @@ export const SECTIONS: Section[] = [
         subtitle: "Terminal-only tool for weaving notes",
         year: "2023",
         role: "Side project",
-        kind: "Code",
         preview:
           "A two-hundred-line Go program for stitching together notes from disparate files. I use it every day.",
       },

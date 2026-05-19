@@ -276,13 +276,13 @@ export default function EntryPage({
             animate="show"
           >
             <MetaBlock label="Year" value={item.year} offset={0} />
+            <MetaBlock label="Role" value={item.role} offset={24} />
             <MetaBlock
               label="Website"
               value={item.website ?? item.role}
               href={item.website ? `https://${item.website}` : undefined}
-              offset={24}
+              offset={8}
             />
-            <MetaBlock label="Kind" value={item.kind} offset={8} />
           </motion.div>
         </div>
 

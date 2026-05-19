@@ -445,7 +445,7 @@ function IndexRow({
             alignItems: "center",
           }}
         >
-          {item.kind}
+          {item.role}
         </span>
 
         {/* Year */}
