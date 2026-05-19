@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #ffffff;
+  --fg: #000000;
+  --serif: "Times New Roman", Times, "Iowan Old Style", Cambria, serif;
+}
+
+[data-theme="ink"] {
+  --bg: #000000;
+  --fg: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "liga" 1, "kern" 1;
+}
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+::selection {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--serif);
+}
+
+.smcp {
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.14em;
+}
+
+.nums {
+  font-variant-numeric: lining-nums tabular-nums;
+}
