@@ -328,14 +328,16 @@ function LeftColumn() {
 
 function IndexRow({
   item,
+  n,
   rowPad,
   rowIdx,
 }: {
-  item: WorkItem & { n: number };
+  item: WorkItem;
+  n: number;
   rowPad: number;
   rowIdx: number;
 }) {
-  const numStr = String(item.n).padStart(2, "0");
+  const numStr = String(n).padStart(2, "0");
   const shift = rowIdx % 2 === 0 ? 0 : 14;
 
   const inner = (
@@ -670,6 +672,7 @@ function SectionBlock({
           <IndexRow
             key={item.id}
             item={item}
+            n={idx + 1}
             rowPad={rowPad}
             rowIdx={idx}
           />
