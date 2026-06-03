@@ -281,12 +281,14 @@ export default function EntryPage({
           >
             <MetaBlock label="Year" value={item.year} offset={0} />
             <MetaBlock label="Role" value={item.role} offset={24} />
-            <MetaBlock
-              label="Website"
-              value={item.websiteLabel ?? item.website ?? item.role}
-              href={item.website ? `https://${item.website}` : undefined}
-              offset={8}
-            />
+            {item.website && (
+              <MetaBlock
+                label="Website"
+                value={item.websiteLabel ?? item.website}
+                href={`https://${item.website}`}
+                offset={8}
+              />
+            )}
           </motion.div>
         </div>
 
