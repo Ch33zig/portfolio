@@ -328,15 +328,135 @@ function LeftColumn() {
 
 function IndexRow({
   item,
+  n,
   rowPad,
   rowIdx,
 }: {
-  item: WorkItem & { n: number };
+  item: WorkItem;
+  n: number;
   rowPad: number;
   rowIdx: number;
 }) {
-  const numStr = String(item.n).padStart(2, "0");
+  const numStr = String(n).padStart(2, "0");
   const shift = rowIdx % 2 === 0 ? 0 : 14;
+
+  const inner = (
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "48px 1fr auto auto",
+        alignItems: "stretch",
+        color: "inherit",
+        textDecoration: "none",
+        position: "relative",
+        zIndex: 5,
+      }}
+    >
+      {/* Number stamp */}
+      <span
+        className="nums"
+        style={{
+          background: "var(--fg)",
+          color: "var(--bg)",
+          padding: `${rowPad}px 0`,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontSize: 13,
+          fontStyle: "italic",
+          letterSpacing: "-0.02em",
+          opacity: item.comingSoon ? 0.3 : 1,
+        }}
+      >
+        {numStr}
+      </span>
+
+      {/* Title + subtitle */}
+      <span
+        style={{
+          display: "flex",
+          alignItems: "baseline",
+          gap: 10,
+          flexWrap: "wrap",
+          padding: `${rowPad}px 14px`,
+        }}
+      >
+        <span
+          style={{
+            fontSize: "clamp(14px, 1.3vw, 18px)",
+            fontWeight: 400,
+            letterSpacing: "-0.015em",
+            lineHeight: 1.1,
+          }}
+        >
+          {item.title}
+        </span>
+        <span
+          style={{
+            fontStyle: "italic",
+            fontSize: 11,
+            opacity: 0.7,
+            fontWeight: 400,
+          }}
+        >
+          {item.subtitle}
+        </span>
+      </span>
+
+      {/* Kind */}
+      <span
+        className="smcp"
+        style={{
+          fontSize: 9,
+          opacity: 0.8,
+          whiteSpace: "nowrap",
+          padding: `${rowPad}px 10px`,
+          alignSelf: "center",
+          borderLeft: "1.5px solid currentColor",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        {item.role}
+      </span>
+
+      {/* Year */}
+      <span
+        className="nums"
+        style={{
+          fontSize: 13,
+          fontStyle: "italic",
+          minWidth: 60,
+          textAlign: "right",
+          padding: `${rowPad}px 12px`,
+          alignSelf: "center",
+          borderLeft: "1.5px solid currentColor",
+          fontWeight: 400,
+        }}
+      >
+        {item.year}
+      </span>
+    </div>
+  );
+
+  if (item.comingSoon) {
+    return (
+      <li
+        style={{
+          border: "1.5px solid var(--fg)",
+          marginLeft: shift,
+          marginTop: -1.5,
+          position: "relative",
+          overflow: "hidden",
+          listStyle: "none",
+          opacity: 0.35,
+          cursor: "default",
+        }}
+      >
+        {inner}
+      </li>
+    );
+  }
 
   return (
     <motion.li
@@ -368,7 +488,6 @@ function IndexRow({
         }}
         transition={{ duration: 0.38, ease: [0.4, 0, 0.2, 1] }}
       />
-
       <Link
         href={`/entry/${item.id}`}
         style={{
@@ -553,6 +672,7 @@ function SectionBlock({
           <IndexRow
             key={item.id}
             item={item}
+            n={idx + 1}
             rowPad={rowPad}
             rowIdx={idx}
           />
