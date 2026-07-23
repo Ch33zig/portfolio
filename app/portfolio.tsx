@@ -35,9 +35,9 @@ function Mark() {
   );
 }
 
-/* ─── Definition row (jenga offset) ─────────────────────────────── */
+/* ─── Footer cell (jenga offset) ────────────────────────────────── */
 
-function DefRow({
+function FooterCell({
   label,
   value,
   offset = 0,
@@ -65,6 +65,7 @@ function DefRow({
           color: "var(--bg)",
           padding: "6px 11px",
           fontSize: 10,
+          opacity: 0.85,
         }}
       >
         {label}
@@ -72,61 +73,10 @@ function DefRow({
       <div
         style={{
           padding: "6px 12px",
-          fontStyle: "italic",
-          fontWeight: 400,
-          fontSize: 13,
+          fontSize: 12,
           borderLeft: "1.5px solid var(--fg)",
           background: "var(--bg)",
           color: "var(--fg)",
-        }}
-      >
-        {value}
-      </div>
-    </motion.div>
-  );
-}
-
-/* ─── Footer cell (jenga offset) ────────────────────────────────── */
-
-function FooterCell({
-  label,
-  value,
-  offset = 0,
-  dark,
-  noTopDivider,
-}: {
-  label: string;
-  value: React.ReactNode;
-  offset?: number;
-  dark?: boolean;
-  noTopDivider?: boolean;
-}) {
-  return (
-    <motion.div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "110px 1fr",
-        marginLeft: offset,
-        border: "1.5px solid var(--fg)",
-        marginTop: -1.5,
-        background: dark ? "var(--fg)" : "var(--bg)",
-        color: dark ? "var(--bg)" : "var(--fg)",
-      }}
-      whileHover={{ x: dark ? -4 : 4 }}
-      transition={{ duration: 0.2, ease: "easeOut" }}
-    >
-      <div
-        className="smcp"
-        style={{ padding: "5px 11px", fontSize: 10, opacity: 0.85 }}
-      >
-        {label}
-      </div>
-      <div
-        style={{
-          padding: "5px 12px",
-          fontSize: 12,
-          borderLeft: dark ? "1.5px solid var(--bg)" : "1.5px solid var(--fg)",
-          borderTop: dark && !noTopDivider ? "1.5px solid var(--bg)" : "none",
         }}
       >
         {value}
@@ -240,84 +190,53 @@ function LeftColumn() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
         >
-          <DefRow
-            label="Discipline"
-            value="Product Engineer, Pianist"
+          <FooterCell
+            label="LinkedIn"
+            value={
+              <a
+                href="https://www.linkedin.com/in/alex-h-wu/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "var(--fg)" }}
+              >
+                alex-h-wu
+              </a>
+            }
             offset={0}
           />
-          <DefRow label="Focus" value="Systems & AI" offset={28} />
-          <DefRow
-            label="Bio"
-            value="17, building what becomes the standard later."
-            offset={14}
+          <FooterCell
+            label="Résumé"
+            value={
+              <span style={{ opacity: 0.55, fontStyle: "italic" }}>
+                available on request
+              </span>
+            }
+            offset={24}
+          />
+          <FooterCell
+            label="Email"
+            value={
+              <a
+                href="mailto:alexhaolinwu@gmail.com"
+                style={{ color: "var(--fg)" }}
+              >
+                alexhaolinwu@gmail.com
+              </a>
+            }
+            offset={0}
+          />
+          <FooterCell
+            label="Locale"
+            value={
+              <span>
+                Toronto, ON&nbsp;·&nbsp;
+                <span className="nums">{time}</span>&nbsp;ET
+              </span>
+            }
+            offset={36}
           />
         </motion.div>
       </div>
-
-      {/* Footer */}
-      <motion.footer
-        style={{
-          fontSize: 13,
-          lineHeight: 1.55,
-          display: "flex",
-          flexDirection: "column",
-          gap: 0,
-        }}
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.45, ease: [0.4, 0, 0.2, 1] }}
-      >
-        <FooterCell
-          noTopDivider
-          label="LinkedIn"
-          value={
-            <a
-              href="https://www.linkedin.com/in/alex-h-wu/"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ color: "var(--bg)" }}
-            >
-              alex-h-wu
-            </a>
-          }
-          offset={0}
-          dark
-        />
-        <FooterCell
-          label="Résumé"
-          value={
-            <span style={{ opacity: 0.55, fontStyle: "italic" }}>
-              available on request
-            </span>
-          }
-          offset={24}
-          dark
-        />
-        <FooterCell
-          label="Email"
-          value={
-            <a
-              href="mailto:alexhaolinwu@gmail.com"
-              style={{ color: "var(--bg)" }}
-            >
-              alexhaolinwu@gmail.com
-            </a>
-          }
-          offset={0}
-          dark
-        />
-        <FooterCell
-          label="Locale"
-          value={
-            <span>
-              Toronto, ON&nbsp;·&nbsp;
-              <span className="nums">{time}</span>&nbsp;ET
-            </span>
-          }
-          offset={36}
-          dark
-        />
-      </motion.footer>
     </aside>
   );
 }
